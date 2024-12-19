@@ -1,101 +1,211 @@
-import Image from "next/image";
+import { Badge } from "@/app/ui/badge";
+import { LibraryCard, type Library } from "@/app/LibraryCard";
+import { CodeExamples } from "@/app/CodeExamples";
+import { FeatureComparison } from "@/app/FeatureComparison";
 
-export default function Home() {
+const libraries: Library[] = [
+  {
+    name: "react-i18next",
+    description:
+      "Powerful internationalization framework for React based on i18next",
+    features: [
+      "Component-based",
+      "Hooks support",
+      "TypeScript",
+      "Context API",
+      "Pluralization",
+    ],
+    size: "2.3MB",
+    stars: "8.2k",
+    maintained: true,
+  },
+  {
+    name: "react-intl",
+    description: "Internationalize React apps with FormatJS libraries",
+    features: ["Format API", "Component API", "Hooks API", "Messages API"],
+    size: "1.8MB",
+    stars: "13.9k",
+    maintained: true,
+  },
+  {
+    name: "LinguiJS",
+    description: "Seamless internationalization for React apps",
+    features: ["Macro-based", "CLI tools", "TypeScript", "Webpack plugin"],
+    size: "1.2MB",
+    stars: "3.8k",
+    maintained: true,
+  },
+  {
+    name: "next-translate",
+    description: "Easy to use i18n solution for Next.js projects",
+    features: [
+      "Zero dependencies",
+      "SSR support",
+      "TypeScript",
+      "Path aliases",
+    ],
+    size: "0.5MB",
+    stars: "2.1k",
+    maintained: true,
+  },
+  {
+    name: "rosetta",
+    description: "Lightweight but powerful i18n solution with type safety",
+    features: [
+      "Type-safe translations",
+      "Zero dependencies",
+      "Context API",
+      "Dynamic loading",
+    ],
+    size: "0.8MB",
+    stars: "1.2k",
+    maintained: true,
+  },
+  {
+    name: "typesafe-i18n",
+    description: "Fully type-safe i18n library with zero runtime dependencies",
+    features: [
+      "100% type-safe",
+      "Framework agnostic",
+      "No runtime",
+      "Auto-completion",
+    ],
+    size: "0.3MB",
+    stars: "1.5k",
+    maintained: true,
+  },
+];
+
+const codeExamples = {
+  "react-i18next": `import { useTranslation } from 'react-i18next';
+
+const MyComponent = () => {
+  const { t } = useTranslation();
+  
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+    <div>
+      <h1>{t('welcome.title')}</h1>
+      <p>{t('welcome.description', { name: 'John' })}</p>
     </div>
   );
-}
+};`,
+  "react-intl": `import { FormattedMessage, useIntl } from 'react-intl';
+
+const MyComponent = () => {
+  const intl = useIntl();
+  
+  return (
+    <div>
+      <h1>
+        <FormattedMessage id="welcome.title" />
+      </h1>
+      <p>
+        {intl.formatMessage(
+          { id: 'welcome.description' },
+          { name: 'John' }
+        )}
+      </p>
+    </div>
+  );
+};`,
+  lingui: `import { t } from '@lingui/macro';
+
+const MyComponent = () => {
+  return (
+    <div>
+      <h1>{t\`Welcome\`}</h1>
+      <p>{t\`Hello, {name}!\`({ name: 'John' })}</p>
+    </div>
+  );
+};`,
+  "next-translate": `import useTranslation from 'next-translate/useTranslation';
+
+const MyComponent = () => {
+  const { t } = useTranslation('common');
+  
+  return (
+    <div>
+      <h1>{t('welcome.title')}</h1>
+      <p>{t('welcome.description', { name: 'John' })}</p>
+    </div>
+  );
+};`,
+  rosetta: `import { useI18n } from '@/i18n';
+
+const MyComponent = () => {
+  const i18n = useI18n();
+  
+  return (
+    <div>
+      <h1>{i18n.t('welcome.title')}</h1>
+      <p>{i18n.t('welcome.description', { name: 'John' })}</p>
+    </div>
+  );
+};`,
+  "typesafe-i18n": `import { useTranslation } from '../i18n/useTranslation';
+
+const MyComponent = () => {
+  const { t } = useTranslation();
+  
+  return (
+    <div>
+      <h1>{t.welcome.title()}</h1>
+      <p>{t.welcome.description({ name: 'John' })}</p>
+    </div>
+  );
+};`,
+};
+
+const Index = () => {
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+      <div className="container mx-auto px-4 py-16 max-w-7xl">
+        <div className="space-y-8">
+          <div className="text-center space-y-4">
+            <Badge variant="secondary" className="mb-4">
+              React Internationalization
+            </Badge>
+            <h1 className="text-4xl font-bold tracking-tight sm:text-6xl mb-4">
+              Choose the Right i18n Library
+            </h1>
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              A comprehensive comparison of popular React internationalization
+              libraries to help you make an informed decision.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 mt-12">
+            {libraries.map((lib) => (
+              <LibraryCard key={lib.name} lib={lib} />
+            ))}
+          </div>
+
+          <CodeExamples examples={codeExamples} />
+
+          <FeatureComparison
+            libraries={libraries.map((lib) => lib.name)}
+            features={[
+              "Zero Runtime Dependencies",
+              "Type Safety Level",
+              "Build-time Extraction",
+              "Runtime Message Extraction",
+              "Framework Integration",
+              "Custom Formatters Support",
+              "Translation Management UI",
+              "Automatic Locale Detection",
+              "Async Loading Strategy",
+              "Memory Footprint",
+              "Browser/Node.js Support",
+              "Framework-specific Optimizations",
+              "Custom Transformer Support",
+              "Translation File Format",
+              "Development Tools",
+            ]}
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Index;
